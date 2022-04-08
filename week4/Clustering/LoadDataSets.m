@@ -1,9 +1,9 @@
-function [ DataSets ] = LoadDataSets( )
+function [ DataSets ] = LoadDataSets()
 
     DataSets = {};
 
-    D = dir('*.PGM');
-    
+    D = dir('./Clustering/*.PGM');
+        
     for i=1:length(D)
     
         X = MakeDataSet( D(i).name );

@@ -16,9 +16,9 @@ for starts = 1:differentStarts
     wStarts{starts} = rand(numPoints,2);
 end
 convergence=.001;
-sigmaMax = 2;
+sigmaMax = 3;
 diffs = cell(1, sigmaMax + 1);
-tau = 100;
+tau = 200;
 
 if numPoints < 2 * sigmaMax + 1
     throw(MException('InputError:numPoints_nhMax', 'numpoints must be greater than or equal to 2 * nhMax + 1'))
@@ -97,11 +97,15 @@ for sigma0 = 0:sigmaMax
             frame = frame2im(getframe(fig));
             [A,map] = rgb2ind(frame,256);
             if j == 1
-                imwrite(A,map,[titleString '.gif'],'gif','LoopCount',Inf,'DelayTime',1);
+                imwrite(A,map,[titleString '.gif'],'gif','LoopCount', Inf ,'DelayTime', 3);
+            elseif j == iters
+                imwrite(A,map,[titleString '.gif'],'gif','WriteMode','append','DelayTime', 5);
             else
-                imwrite(A,map,[titleString '.gif'],'gif','WriteMode','append','DelayTime',1);
+                imwrite(A,map,[titleString '.gif'],'gif','WriteMode','append','DelayTime', 10 / iters);
             end
             hold off
         end
     end
 end
+
+close all;

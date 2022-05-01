@@ -98,8 +98,10 @@ for sigma0 = 0:sigmaMax
             [A,map] = rgb2ind(frame,256);
             if j == 1
                 imwrite(A,map,[titleString '.gif'],'gif','LoopCount', Inf ,'DelayTime', 3);
+                imwrite(A,map,[titleString '_start.png']);
             elseif j == iters
                 imwrite(A,map,[titleString '.gif'],'gif','WriteMode','append','DelayTime', 5);
+                imwrite(A,map,[titleString '_final.png']);
             else
                 imwrite(A,map,[titleString '.gif'],'gif','WriteMode','append','DelayTime', 10 / iters);
             end
